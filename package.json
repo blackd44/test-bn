@@ -1,0 +1,40 @@
+{
+  "name": "bn",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "engines": {
+    "node": ">=18.18.0"
+  },
+  "scripts": {
+    "build": "npx tsc",
+    "start": "NODE_ENV=production ts-node -r tsconfig-paths/register src/server.ts",
+    "dev": "NODE_ENV=development nodemon",
+    "test": "NODE_ENV=test jest --coverage"
+  },
+  "keywords": [],
+  "author": "blackd44",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/body-parser": "^1.19.5",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/jest": "^29.5.11",
+    "@types/morgan": "^1.9.9",
+    "@types/supertest": "^6.0.2",
+    "jest": "^29.7.0",
+    "nodemon": "^3.0.2",
+    "supertest": "^6.3.3",
+    "ts-jest": "^29.1.1",
+    "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "morgan": "^1.10.0"
+  }
+}
