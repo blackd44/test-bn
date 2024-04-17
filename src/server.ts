@@ -8,6 +8,6 @@ const activeColor = "\x1b[36m";
 
 app.listen(port, async () => {
   console.log(
-    `${FgWhite}⚡️[server: ${activeColor}${NODE_ENV}${FgWhite}]: Server is running at http://localhost:${activeColor}${port}`
+    `${FgWhite}⚡️[server: ${activeColor}${NODE_ENV}${FgWhite}]: Server is running at http://localhost:${activeColor}${port}${FgWhite}`
   );
 });

@@ -6,7 +6,7 @@ export function errorHandler(
   res: Response,
   _next: NextFunction
 ) {
-  const isTest = process.env.NODE_ENV === "test";
+  // const isTest = process.env.NODE_ENV === "test";
   const statusCode = res.statusCode != 200 ? res.statusCode : 500;
   res.status(statusCode);
 
@@ -14,8 +14,15 @@ export function errorHandler(
     ...err,
     status: statusCode,
     error: err.message,
-    stack: !isTest ? err.stack : null,
+    // stack: err.stack,
   };
+
+  console.log({
+    ...err,
+    status: statusCode,
+    error: err.message,
+    stack: err.stack,
+  });
 
   res.json(resBody);
 }
