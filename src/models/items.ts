@@ -8,6 +8,10 @@ const ItemsSchema = new Schema(
       amount: Number,
       currency: String,
     },
+    category: {
+      type: Schema.Types.ObjectId,
+      ref: "categories",
+    },
   },
   { timestamps: true }
 );

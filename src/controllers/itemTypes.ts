@@ -1,22 +1,22 @@
 import { RequestHandler } from "express";
-import { Items } from "../models";
 import { Paginators } from "../helpers/model";
+import { Types } from "../models";
 
-export default class ItemsController {
-  // getting all items
+export default class ItemsTypeController {
+  // get item type
   static getAll: RequestHandler = async (req, res) => {
-    // #swagger.tags = ['items']
+    // #swagger.tags = ['items types']
 
     // #swagger.parameters['$ref'] = ['#/components/parameters/start', '#/components/parameters/size', '#/components/parameters/sort_by']
     const { skip, sorts, limit } = Paginators(req);
 
-    const itemCount = await Items.countDocuments({});
-    const items = await Items.find().sort(sorts).skip(skip).limit(limit).exec();
+    const allCount = await Types.countDocuments({});
+    const all = await Types.find().sort(sorts).skip(skip).limit(limit).exec();
 
     res.status(200).json({
       results: {
-        data: items,
-        total: itemCount,
+        data: all,
+        total: allCount,
         size: limit,
         start: skip,
         end: skip + limit,
@@ -24,20 +24,20 @@ export default class ItemsController {
     });
   };
 
-  // posting item
+  // posting new item type
   static addItem: RequestHandler = async (req, res) => {
-    // #swagger.tags = ['items']
+    // #swagger.tags = ['items types']
 
-    const { title, description, amount, currency } = req.body;
+    const { name, description } = req.body;
 
-    const newItem = await Items.create({
-      title,
+    const newItemType = await Types.create({
+      name,
       description,
-      price: { amount, currency },
     });
+
     res.json({
-      result: newItem,
-      message: "item added successfully",
+      result: newItemType,
+      message: "item type added successfully",
     });
   };
 }

@@ -48,6 +48,103 @@
         }
       }
     },
+    "/api/item/types/": {
+      "get": {
+        "tags": [
+          "items types"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/start"
+          },
+          {
+            "$ref": "#/components/parameters/size"
+          },
+          {
+            "$ref": "#/components/parameters/sort_by"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "items types"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "example": "any"
+                  },
+                  "description": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/item/categories/": {
+      "get": {
+        "tags": [
+          "item categories"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/start"
+          },
+          {
+            "$ref": "#/components/parameters/size"
+          },
+          {
+            "$ref": "#/components/parameters/sort_by"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "item categories"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/itemCategory"
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/items/": {
       "get": {
         "tags": [
@@ -56,25 +153,13 @@
         "description": "",
         "parameters": [
           {
-            "name": "start",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
+            "$ref": "#/components/parameters/start"
           },
           {
-            "name": "size",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
+            "$ref": "#/components/parameters/size"
           },
           {
-            "name": "sort_by",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
+            "$ref": "#/components/parameters/sort_by"
           }
         ],
         "responses": {
@@ -114,6 +199,62 @@
                 }
               }
             }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "parameters": {
+      "start": {
+        "in": "query",
+        "type": "number",
+        "name": "start"
+      },
+      "size": {
+        "in": "query",
+        "type": "number",
+        "name": "size"
+      },
+      "sort_by": {
+        "in": "query",
+        "type": "string",
+        "name": "sort_by"
+      }
+    },
+    "schemas": {
+      "itemCategory": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "string"
+          },
+          "price": {
+            "type": "object",
+            "properties": {
+              "amount": {
+                "type": "string",
+                "example": "number"
+              },
+              "currency": {
+                "type": "string",
+                "example": "string"
+              }
+            }
+          },
+          "features": {
+            "type": "array",
+            "example": [
+              "string"
+            ],
+            "items": {
+              "type": "string"
+            }
+          },
+          "type": {
+            "type": "string",
+            "example": "string"
           }
         }
       }
