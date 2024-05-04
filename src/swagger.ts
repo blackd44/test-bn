@@ -40,7 +40,7 @@ const doc = {
       itemCategory: {
         name: "string",
         price: {
-          amount: "number",
+          amount: 30,
           currency: "string",
         },
         features: ["string"],

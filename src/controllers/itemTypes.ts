@@ -3,7 +3,7 @@ import { Paginators } from "../helpers/model";
 import { Types } from "../models";
 
 export default class ItemsTypeController {
-  // get item type
+  // get items type
   static getAll: RequestHandler = async (req, res) => {
     // #swagger.tags = ['items types']
 
@@ -19,7 +19,7 @@ export default class ItemsTypeController {
         total: allCount,
         size: limit,
         start: skip,
-        end: skip + limit,
+        end: skip - 1 + all.length,
       },
     });
   };
@@ -38,6 +38,53 @@ export default class ItemsTypeController {
     res.json({
       result: newItemType,
       message: "item type added successfully",
+    });
+  };
+
+  // get items type
+  static getOne: RequestHandler = async (req, res) => {
+    // #swagger.tags = ['items types']
+
+    const { id } = req.params;
+
+    const one = await Types.findById(id).exec();
+
+    res.status(200).json({
+      results: { data: one },
+    });
+  };
+
+  // posting new item type
+  static updateItem: RequestHandler = async (req, res) => {
+    // #swagger.tags = ['items types']
+
+    const { id } = req.params;
+    const { name, description } = req.body;
+
+    const ItemType = await Types.findByIdAndUpdate(
+      id,
+      { name, description },
+      { new: true }
+    ).exec();
+
+    res.json({
+      result: ItemType,
+      message: "item type update successfully",
+    });
+  };
+
+  // posting new item type
+  static deleteItem: RequestHandler = async (req, res) => {
+    // #swagger.tags = ['items types']
+
+    const { ids } = req.params;
+    const deletedIds = `${ids}`?.split?.(",");
+
+    const ItemType = await Types.deleteMany({ _id: deletedIds });
+
+    res.json({
+      result: ItemType,
+      message: "item type update successfully",
     });
   };
 }
